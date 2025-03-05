@@ -1,22 +1,12 @@
 import {
   Attachment,
+  AttachmentBuilder,
   ChatInputCommandInteraction,
   SlashCommandBuilder,
 } from "discord.js";
 import type { customClient } from "../..";
-
-const download = async (file: Attachment): Promise<File> =>
-  new File(
-    [
-      await fetch(file.url).then((res) => {
-        return res.blob();
-      }),
-    ],
-    file.name,
-    {
-      type: file.contentType ?? "application/octet-stream",
-    }
-  );
+import { createDong } from "../../lib/dong-io";
+import { download } from "../../lib/download";
 
 export const data = new SlashCommandBuilder()
   .setName("create")
@@ -62,12 +52,19 @@ export const execute = async (
     audio: await download(audio),
   };
   console.log(downloaded);
-  await interaction.editReply(`Not implemented! Debug:
-\`\`\`
-filename: ${filename}
 
-image: ${image.contentType} | ${image.url}
+  const dong = new File(
+    [await createDong(downloaded.image, downloaded.audio)],
+    filename,
+    { type: "application/prs.vielle.dong" }
+  );
+  console.log(dong);
 
-audio: ${audio.contentType} | ${audio.url}
-\`\`\``);
+  await interaction.editReply({
+    files: [
+      new AttachmentBuilder(Buffer.from(await dong.arrayBuffer()), {
+        name: dong.name,
+      }),
+    ],
+  });
 };
