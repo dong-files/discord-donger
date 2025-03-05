@@ -1,7 +1,5 @@
 import {
   ChatInputCommandInteraction,
-  Client,
-  CommandInteraction,
   SlashCommandBuilder,
 } from "discord.js";
 import type { customClient } from "../..";
