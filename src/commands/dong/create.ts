@@ -51,14 +51,12 @@ export const execute = async (
     image: await download(image),
     audio: await download(audio),
   };
-  console.log(downloaded);
 
   const dong = new File(
     [await createDong(downloaded.image, downloaded.audio)],
     filename,
     { type: "application/prs.vielle.dong" }
   );
-  console.log(dong);
 
   await interaction.editReply({
     files: [

@@ -1,6 +1,7 @@
 import {
   AttachmentBuilder,
   ChatInputCommandInteraction,
+  MessageFlags,
   SlashCommandBuilder,
 } from "discord.js";
 import type { customClient } from "../..";
@@ -23,10 +24,9 @@ export const execute = async (
   interaction: ChatInputCommandInteraction & { client: customClient }
 ) => {
   const dong = interaction.options.getAttachment("dong", true);
-  await interaction.deferReply();
+  await interaction.deferReply({flags: MessageFlags.Ephemeral});
 
   const downloadedDong = await download(dong);
-  console.log(downloadedDong);
 
   const output = await readDong(downloadedDong);
   if (typeof output === "string") {
@@ -34,8 +34,6 @@ export const execute = async (
     return;
   }
   const { image, audio } = output;
-
-  console.log(image, audio);
 
   await interaction.editReply({
     files: [
