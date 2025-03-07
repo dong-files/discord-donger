@@ -32,3 +32,10 @@ report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
 
 # Finder (MacOS) folder config
 .DS_Store
+lib/index.js
+lib/sync.js
+lib/commands/dong/create.js
+lib/commands/dong/open.js
+lib/commands/util/ping.js
+lib/lib/dong-io.js
+lib/lib/download.js
