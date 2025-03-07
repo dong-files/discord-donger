@@ -7,11 +7,16 @@ import {
   MessageFlags,
   type Interaction,
 } from "discord.js";
-import { Glob } from "bun";
+// import { Glob } from "bun";
+import { glob } from "glob";
+import "dotenv/config";
+import path from "node:path";
 
 const token = process.env.token;
 if (!token) throw new Error("Token required. Please fill in TOKEN in .env");
 console.log("Token Valid!");
+
+const __dirname = import.meta.dirname;
 
 // client typing
 export type customClient = Client & {
@@ -34,9 +39,11 @@ const client: customClient = new Client({
 
 // setup commands
 client.commands = new Collection();
-const commandGlob = new Glob("**/*.ts");
-for await (const file of commandGlob.scan("./src/commands")) {
-  const command = await import("./commands/" + file);
+// const commandGlob = new Glob("**/*.ts");
+for (const file of await glob("src/commands/**/*.ts", {
+  ignore: "node_modules",
+})) {
+  const command = await import("file:///" + path.join(__dirname, "..", file));
   // check command contains all required properties
   if (
     "data" in command &&

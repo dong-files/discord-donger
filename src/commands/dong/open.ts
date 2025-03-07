@@ -5,8 +5,8 @@ import {
   SlashCommandBuilder,
 } from "discord.js";
 import type { customClient } from "../..";
-import { download } from "../../lib/download";
-import { readDong } from "../../lib/dong-io";
+import { download } from "../../lib/download.ts";
+import { readDong } from "../../lib/dong-io.ts";
 import { Mime } from "mime";
 import standardTypes from "mime/types/standard.js";
 import otherTypes from "mime/types/other.js";
