@@ -44,7 +44,7 @@ const client: customClient = new Client({
 
 // setup commands
 client.commands = new Collection();
-for (const file of await glob("src/commands/**/*.{ts,js}", {
+for (const file of await glob(path.join(__dirname, "commands/**/*.{ts,js}"), {
   ignore: "node_modules",
 })) {
   console.log(import.meta.filename, path.join(import.meta.filename, ".."), __dirname, file, path.join(__dirname, "..", file));
