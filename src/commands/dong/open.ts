@@ -23,6 +23,7 @@ export const data = new SlashCommandBuilder()
 export const execute = async (
   interaction: ChatInputCommandInteraction & { client: customClient }
 ) => {
+  console.log("[command] /open")
   const dong = interaction.options.getAttachment("dong", true);
   await interaction.deferReply({flags: MessageFlags.Ephemeral});
 

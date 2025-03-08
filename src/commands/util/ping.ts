@@ -10,5 +10,6 @@ export const data = new SlashCommandBuilder()
 export const execute = async (
   interaction: ChatInputCommandInteraction & { client: customClient }
 ) => {
+  console.log("[command] /ping")
   await interaction.reply("Pong!");
 };

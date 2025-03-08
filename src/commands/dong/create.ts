@@ -32,6 +32,7 @@ export const data = new SlashCommandBuilder()
 export const execute = async (
   interaction: ChatInputCommandInteraction & { client: customClient }
 ) => {
+  console.info("[command] /create")
   const filename = interaction.options.getString("name", true) + ".dong";
   const image = interaction.options.getAttachment("image", true);
   const audio = interaction.options.getAttachment("audio", true);

@@ -12,14 +12,11 @@ import { glob } from "glob";
 import "dotenv/config";
 import path from "node:path";
 
-console.log(process.env);
-
 const token = process.env.token ?? process.env.TOKEN;
 if (!token)
   throw new Error(
     'Token required. Please fill in TOKEN in .env (TOKEN = "' + token + '")'
   );
-console.log("Token Valid!");
 
 const __dirname = import.meta.dirname;
 
@@ -47,7 +44,6 @@ client.commands = new Collection();
 for (const file of await glob(path.join(__dirname, "commands/**/*.{ts,js}"), {
   ignore: "node_modules",
 })) {
-  console.log(import.meta.filename, path.join(import.meta.filename, ".."), __dirname, file, path.join(__dirname, "..", file));
   const command = await import("file:///" + file);
   // check command contains all required properties
   if (
