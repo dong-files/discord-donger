@@ -48,7 +48,7 @@ for (const file of await glob(path.join(__dirname, "commands/**/*.{ts,js}"), {
   ignore: "node_modules",
 })) {
   console.log(import.meta.filename, path.join(import.meta.filename, ".."), __dirname, file, path.join(__dirname, "..", file));
-  const command = await import("file:///" + path.join(__dirname, "..", file));
+  const command = await import("file:///" + file);
   // check command contains all required properties
   if (
     "data" in command &&
