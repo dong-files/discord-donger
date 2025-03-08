@@ -12,6 +12,8 @@ import { glob } from "glob";
 import "dotenv/config";
 import path from "node:path";
 
+console.log(process.env)
+
 const token = process.env.token;
 if (!token) throw new Error("Token required. Please fill in TOKEN in .env");
 console.log("Token Valid!");
