@@ -14,7 +14,7 @@ import path from "node:path";
 
 console.log(process.env)
 
-const token = process.env.token;
+const token = process.env.token ?? process.env.TOKEN;
 if (!token) throw new Error("Token required. Please fill in TOKEN in .env (TOKEN = \"" + token + "\")");
 console.log("Token Valid!");
 
