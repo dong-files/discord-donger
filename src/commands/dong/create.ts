@@ -5,8 +5,8 @@ import {
   SlashCommandBuilder,
 } from "discord.js";
 import type { customClient } from "../..";
-import { createDong } from "../../lib/dong-io.ts";
-import { download } from "../../lib/download.ts";
+import { createDong } from "../../lib/dong-io";
+import { download } from "../../lib/download";
 
 export const data = new SlashCommandBuilder()
   .setName("create")
