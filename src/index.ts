@@ -15,7 +15,7 @@ import path from "node:path";
 console.log(process.env)
 
 const token = process.env.token;
-if (!token) throw new Error("Token required. Please fill in TOKEN in .env");
+if (!token) throw new Error("Token required. Please fill in TOKEN in .env (TOKEN = \"" + token + "\")");
 console.log("Token Valid!");
 
 const __dirname = import.meta.dirname;
